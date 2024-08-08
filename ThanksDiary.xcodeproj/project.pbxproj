@@ -89,23 +89,13 @@
 		4C4924FD2C62424A003A6CF6 /* ThanksDiary */ = {
 			isa = PBXGroup;
 			children = (
-				4C4395852C6309B4005FDBB6 /* DiaryRow.swift */,
-				4C43958B2C6357C8005FDBB6 /* CommentsView.swift */,
 				4C4925002C62424A003A6CF6 /* ContentView.swift */,
-				4C49250C2C62427F003A6CF6 /* HomeView.swift */,
-				4C49250E2C6242A7003A6CF6 /* DiaryView.swift */,
-				4C4925102C6242C2003A6CF6 /* ProfileView.swift */,
-				4C4925122C624314003A6CF6 /* CalendarView.swift */,
-				4C4925142C62486D003A6CF6 /* MainView.swift */,
-				4C4395872C6309D3005FDBB6 /* DiaryDetailView.swift */,
-				4C43957F2C62FB17005FDBB6 /* DiaryData.swift */,
-				4C4395812C62FC1B005FDBB6 /* Diary.swift */,
+				4C4D47A12C64F6A400769E31 /* Model */,
+				4C4D47A02C64F66200769E31 /* View */,
 				4C4395732C62F5F5005FDBB6 /* GoogleService-Info.plist */,
 				4C4924FE2C62424A003A6CF6 /* ThanksDiaryApp.swift */,
 				4C4925022C62424C003A6CF6 /* Assets.xcassets */,
 				4C4925042C62424C003A6CF6 /* Preview Content */,
-				4CE0DA382C6361A100BC8C50 /* Model */,
-				4CE0DA372C63617400BC8C50 /* View */,
 			);
 			path = ThanksDiary;
 			sourceTree = "<group>";
@@ -118,16 +108,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4CE0DA372C63617400BC8C50 /* View */ = {
+		4C4D47A02C64F66200769E31 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C43958B2C6357C8005FDBB6 /* CommentsView.swift */,
+				4C49250C2C62427F003A6CF6 /* HomeView.swift */,
+				4C49250E2C6242A7003A6CF6 /* DiaryView.swift */,
+				4C4925102C6242C2003A6CF6 /* ProfileView.swift */,
+				4C4925122C624314003A6CF6 /* CalendarView.swift */,
+				4C4925142C62486D003A6CF6 /* MainView.swift */,
+				4C4395872C6309D3005FDBB6 /* DiaryDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		4CE0DA382C6361A100BC8C50 /* Model */ = {
+		4C4D47A12C64F6A400769E31 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4C4395852C6309B4005FDBB6 /* DiaryRow.swift */,
+				4C43957F2C62FB17005FDBB6 /* DiaryData.swift */,
+				4C4395812C62FC1B005FDBB6 /* Diary.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
