@@ -17,18 +17,33 @@ class DiaryData: ObservableObject {
         fetchDiaries()
     }
 
+//    func fetchDiaries() {
+//        ref.child("diaries").observe(.value) { snapshot in
+//            var fetchedDiaries: [Diary] = []
+//            for child in snapshot.children {
+//                if let snapshot = child as? DataSnapshot,
+//                   let diary = try? snapshot.data(as: Diary.self) {
+//                    fetchedDiaries.append(diary)
+//                }
+//            }
+//            self.diaries = fetchedDiaries
+//        }
+//    }
+    
     func fetchDiaries() {
-        ref.child("diaries").observe(.value) { snapshot in
-            var fetchedDiaries: [Diary] = []
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                   let diary = try? snapshot.data(as: Diary.self) {
-                    fetchedDiaries.append(diary)
+            ref.child("diaries").observe(.value) { snapshot in
+                var fetchedDiaries: [Diary] = []
+                for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                       let diary = try? snapshot.data(as: Diary.self) {
+                        fetchedDiaries.append(diary)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.diaries = fetchedDiaries.sorted { $0.timestamp > $1.timestamp }
                 }
             }
-            self.diaries = fetchedDiaries
         }
-    }
 
     func addDiary(diary: Diary) {
         do {
@@ -37,6 +52,18 @@ class DiaryData: ObservableObject {
             print("Error adding diary: \(error.localizedDescription)")
         }
     }
+    
+//    func addDiary(diaryText: String) {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd"
+//            let dateString = dateFormatter.string(from: Date())
+//            let newDiary = Diary(id: UUID().uuidString, text: diaryText, date: dateString, timestamp: Date().timeIntervalSince1970)
+//            do {
+//                try ref.child("diaries").child(newDiary.id).setValue(from: newDiary)
+//            } catch {
+//                print("Error adding diary: \(error.localizedDescription)")
+//            }
+//        }
 
     func deleteDiary(diary: Diary) {
         ref.child("diaries").child(diary.id).removeValue { error, _ in

@@ -12,7 +12,11 @@ struct CalendarView: View {
     
     var body: some View {
         VStack {
-           
+            Text("감사일기 달력")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.bottom, 20)
+            
             DatePicker(
                 "날짜 선택",
                 selection: $selectedDate,
@@ -20,7 +24,7 @@ struct CalendarView: View {
             )
             .datePickerStyle(GraphicalDatePickerStyle())
             .padding()
-        }
+        }.navigationTitle("감사일기 달력")
     }
 }
 

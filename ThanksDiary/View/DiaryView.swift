@@ -27,7 +27,7 @@ struct DiaryView: View {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     let dateString = dateFormatter.string(from: selectedDate)
-                    let newDiary = Diary(text: diaryText, date: dateString)
+                    let newDiary = Diary(text: diaryText, date: dateString, timestamp: Date().timeIntervalSince1970)
                     diaryData.addDiary(diary: newDiary)
                     diaryText = ""
                 }) {

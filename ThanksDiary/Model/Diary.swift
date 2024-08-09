@@ -28,21 +28,11 @@ struct Diary: Identifiable, Codable {
     var id: String = UUID().uuidString
     var text: String
     var date: String
-//    var timestamp: TimeInterval
+    var timestamp: TimeInterval
 //    var likes: Int = 0
 //    var comments: [Comment] = []
 
     enum CodingKeys: String, CodingKey {
-        case id, text, date
+        case id, text, date, timestamp
     }
 }
-//
-//struct Comment: Identifiable, Codable {
-//    var id: String
-//    var text: String
-//    var date: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id, text, date
-//    }
-//}

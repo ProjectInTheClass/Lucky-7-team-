@@ -6,20 +6,84 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct ProfileView: View {
+    @State private var userEmail: String = Auth.auth().currentUser?.email ?? "Unknown"
+    @State private var joinDate: String = "Not Available" // This can be updated with real data
+    @State private var showAlert: Bool = false
+    @State private var navigateToMainView: Bool = false
+
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("내 정보 화면")
-                    .font(.largeTitle)
-                    .padding()
+        VStack(alignment: .leading, spacing: 20) {
+            Text("내 정보")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.bottom, 20)
+
+            HStack {
+                Text("이메일:")
+                    .font(.headline)
+                Spacer()
+                Text(userEmail)
+                    .font(.body)
             }
-            .navigationTitle("내 정보")
+
+            HStack {
+                Text("가입 날짜:")
+                    .font(.headline)
+                Spacer()
+                Text(joinDate)
+                    .font(.body)
+            }
+
+            Spacer()
+
+            Button(action: {
+                showAlert = true
+            }) {
+                Text("로그아웃")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                    .cornerRadius(10)
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("로그아웃"),
+                    message: Text("로그아웃 하시겠습니까?"),
+                    primaryButton: .destructive(Text("로그아웃")) {
+                        logout()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+
+            NavigationLink(destination: MainView(), isActive: $navigateToMainView) {
+                EmptyView()
+            }
+        }
+        .padding()
+        .navigationTitle("내 정보")
+    }
+
+    private func logout() {
+        do {
+            try Auth.auth().signOut()
+            // 로그아웃 후 메인 화면으로 이동
+            navigateToMainView = true
+        } catch {
+            // 로그아웃 오류 처리
+            print("Error signing out: \(error.localizedDescription)")
         }
     }
 }
 
-#Preview {
-    ProfileView()
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView()
+    }
 }

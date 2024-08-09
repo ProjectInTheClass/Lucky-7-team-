@@ -11,13 +11,27 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
+            
+            RandomView()
+                .tabItem {
+                    Image(systemName: "envelope")
+                    Text("랜덤주제")
+                }
+
+            CalendarView()
+                .tabItem {
+                    Image(systemName: "calendar")
+                    Text("달력")
+                    
+                }
+            
             HomeView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("홈")
                 }
                 .environmentObject(diaryData)
-
+            
             DiaryView()
                 .tabItem {
                     Image(systemName: "pencil")
