@@ -59,7 +59,7 @@ struct MainView: View {
 
                 VStack(spacing: 20) {
                     NavigationLink(destination: LoginView()) {
-                        Text("로그인")
+                        Text("로그인    ")
                             .font(.title2)
                             .padding()
                             .background(Color.blue)

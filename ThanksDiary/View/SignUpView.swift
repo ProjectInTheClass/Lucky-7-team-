@@ -39,7 +39,7 @@ struct SignUpView: View {
                 Text("회원가입")
                     .font(.title2)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
