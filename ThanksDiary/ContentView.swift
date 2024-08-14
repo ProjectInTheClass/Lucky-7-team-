@@ -23,7 +23,7 @@ struct ContentView: View {
                     Image(systemName: "calendar")
                     Text("달력")
                     
-                }
+                }.environmentObject(diaryData)
             
             HomeView()
                 .tabItem {
@@ -51,9 +51,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}

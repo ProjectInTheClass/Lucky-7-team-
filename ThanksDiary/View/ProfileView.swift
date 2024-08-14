@@ -5,13 +5,14 @@
 //  Created by my account on 8/6/24.
 //
 
+
 import SwiftUI
 import Firebase
 import FirebaseAuth
 
 struct ProfileView: View {
     @State private var userEmail: String = Auth.auth().currentUser?.email ?? "Unknown"
-    @State private var joinDate: String = "Not Available" // This can be updated with real data
+    @State private var joinDate: String = "Not Available"
     @State private var showAlert: Bool = false
     @State private var navigateToMainView: Bool = false
 
@@ -22,21 +23,30 @@ struct ProfileView: View {
                 .fontWeight(.bold)
                 .padding(.bottom, 20)
 
-            HStack {
-                Text("이메일:")
-                    .font(.headline)
-                Spacer()
-                Text(userEmail)
-                    .font(.body)
-            }
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text("이메일:")
+                        .font(.headline)
+                        .foregroundColor(Color.green)
+                    Spacer()
+                    Text(userEmail)
+                        .font(.body)
+                        .foregroundColor(Color.black)
+                }
 
-            HStack {
-                Text("가입 날짜:")
-                    .font(.headline)
-                Spacer()
-                Text(joinDate)
-                    .font(.body)
+                HStack {
+                    Text("가입 날짜:")
+                        .font(.headline)
+                        .foregroundColor(Color.green)
+                    Spacer()
+                    Text(joinDate)
+                        .font(.body)
+                        .foregroundColor(Color.black)
+                }
             }
+            .padding()
+            .background(Color.yellow.opacity(0.3))
+            .cornerRadius(10)
 
             Spacer()
 
@@ -68,6 +78,19 @@ struct ProfileView: View {
         }
         .padding()
         .navigationTitle("내 정보")
+        .onAppear {
+            fetchJoinDate()
+        }
+    }
+
+    // 가입 날짜를 가져오는 함수
+    private func fetchJoinDate() {
+        guard let user = Auth.auth().currentUser else { return }
+        let creationDate = user.metadata.creationDate ?? Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.joinDate = dateFormatter.string(from: creationDate)
     }
 
     private func logout() {

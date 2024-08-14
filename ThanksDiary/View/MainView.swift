@@ -5,48 +5,18 @@
 //  Created by my account on 8/6/24.
 //
 
-//import SwiftUI
-//
-//struct MainView: View {
-//    var body: some View {
-//        NavigationView {
-//            GeometryReader { geometry in
-//                VStack(spacing: 20) {
-//                    Text("🍀")
-//                        .font(.system(size: geometry.size.width * 0.5))
-//                        .frame(height: geometry.size.height * 0.4)
-//
-//                    Text("감사일기")
-//                        .font(.largeTitle)
-//                        .fontWeight(.bold)
-//                        .padding(.top, 20)
-//
-//                    NavigationLink(destination: ContentView()) {
-//                        Text("시작하기")
-//                            .font(.title2)
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(10)
-//                    }
-//                    .padding(.bottom, 40)
-//                }
-//                .frame(width: geometry.size.width, height: geometry.size.height)
-//                .navigationTitle("")
-//            }
-//        }
-//    }
-//}
-//
-//
-//#Preview {
-//    MainView()
-//}
 import SwiftUI
 
+enum NavigationDestination: Hashable {
+    case login
+    case signUp
+}
+
 struct MainView: View {
+    @State private var path = NavigationPath()
+
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             VStack(spacing: 40) {
                 Text("🍀")
                     .font(.system(size: 200))
@@ -58,7 +28,9 @@ struct MainView: View {
                     .padding(.top, 20)
 
                 VStack(spacing: 20) {
-                    NavigationLink(destination: LoginView()) {
+                    Button(action: {
+                        path.append(NavigationDestination.login)
+                    }) {
                         Text("로그인    ")
                             .font(.title2)
                             .padding()
@@ -67,7 +39,9 @@ struct MainView: View {
                             .cornerRadius(10)
                     }
 
-                    NavigationLink(destination: SignUpView()) {
+                    Button(action: {
+                        path.append(NavigationDestination.signUp)
+                    }) {
                         Text("회원가입")
                             .font(.title2)
                             .padding()
@@ -75,16 +49,6 @@ struct MainView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-
-//                    NavigationLink(destination: ContentView()) {
-//                        Text("시작하기")
-//                            .font(.title2)
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(10)
-//                            .padding(.top, 20)
-//                    }
                 }
                 .padding(.bottom, 40)
 
@@ -93,6 +57,14 @@ struct MainView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
             .navigationBarHidden(true)
+            .navigationDestination(for: NavigationDestination.self) { destination in
+                switch destination {
+                case .login:
+                    LoginView()
+                case .signUp:
+                    SignUpView()
+                }
+            }
         }
     }
 }

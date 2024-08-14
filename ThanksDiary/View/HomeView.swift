@@ -4,6 +4,7 @@
 //
 //  Created by my account on 8/6/24.
 //
+
 import SwiftUI
 
 struct HomeView: View {
@@ -19,7 +20,7 @@ struct HomeView: View {
                 }
                 .onDelete(perform: delete)
             }
-            .navigationTitle("감사 일기")
+            .navigationTitle("📖 감사 일기 📖")
             .onAppear {
                 diaryData.fetchDiaries()
             }
@@ -39,61 +40,4 @@ struct HomeView_Previews: PreviewProvider {
         HomeView().environmentObject(DiaryData())
     }
 }
-//import SwiftUI
-//
-//struct HomeView: View {
-//    @EnvironmentObject var diaryData: DiaryData
-//
-//    var body: some View {
-//        NavigationView {
-//            VStack {               
-//                if diaryData.diaries.isEmpty {
-//                    Text("일기가 없습니다.")
-//                        .font(.title)
-//                        .foregroundColor(.gray)
-//                } else {
-//                    List {
-//                        ForEach(diaryData.diaries) { diary in
-//                            NavigationLink(destination: DiaryDetailView(diary: diary)) {
-//                                HStack {
-//                                    DiaryRow(diary: diary)
-//                                    Spacer()
-//                                    Button(action: {
-//                                        diaryData.likeDiary(diary: diary)
-//                                    }) {
-//                                        HStack {
-//                                            Image(systemName: "hand.thumbsup.fill")
-//                                            Text("\(diary.likes)")
-//                                        }
-//                                    }
-//                                    .buttonStyle(BorderlessButtonStyle())
-//                                }
-//                            }
-//                        }
-//                        .onDelete(perform: delete)
-//                    }
-//                    .navigationTitle("감사 일기")
-//                }
-//            }
-//            .onAppear {
-//                diaryData.fetchDiaries()
-//            }
-//        }
-//    }
-//
-//    private func delete(at offsets: IndexSet) {
-//        for index in offsets {
-//            let diary = diaryData.diaries[index]
-//            diaryData.deleteDiary(diary: diary)
-//        }
-//    }
-//}
-//
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView().environmentObject(DiaryData())
-//    }
-//}
-
-
 
