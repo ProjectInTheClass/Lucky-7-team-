@@ -19,6 +19,14 @@ struct ContentView: View {
                     Text("홈")
                 }
             NavigationView {
+                            RandomView()
+                        }
+                .tabItem {
+                        Image(systemName:
+                        "book")
+                    Text("행운주제")
+                            }
+            NavigationView {
                 DiaryView()
             }
                 .tabItem {
@@ -34,6 +42,7 @@ struct ContentView: View {
                     Image(systemName: "person")
                     Text("내 정보")
                 }
+            
         }
     }
 }
