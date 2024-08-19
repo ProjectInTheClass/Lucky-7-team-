@@ -3,7 +3,6 @@
 //  ThanksDiary
 //
 //  Created by my account on 8/6/24.
-//
 
 
 import SwiftUI
@@ -13,6 +12,7 @@ struct DiaryView: View {
     @State private var selectedDate: Date = Date()
     @EnvironmentObject var diaryData: DiaryData
     @State private var showToast: Bool = false // 토스트 메시지 표시 상태
+    @State private var showAlert: Bool = false // 경고 메시지 표시 상태
 
     var body: some View {
         NavigationView {
@@ -41,13 +41,17 @@ struct DiaryView: View {
                 
                 // 저장 버튼
                 Button(action: {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    let dateString = dateFormatter.string(from: selectedDate)
-                    let newDiary = Diary(text: diaryText, date: dateString, timestamp: Date().timeIntervalSince1970)
-                    diaryData.addDiary(diary: newDiary)
-                    diaryText = ""
-                    showToastMessage() // 일기 작성 후 토스트 메시지 표시
+                    if diaryText.isEmpty {
+                        showAlert = true // 일기 내용이 비어 있으면 경고 메시지 표시
+                    } else {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        let dateString = dateFormatter.string(from: selectedDate)
+                        let newDiary = Diary(text: diaryText, date: dateString, timestamp: Date().timeIntervalSince1970)
+                        diaryData.addDiary(diary: newDiary)
+                        diaryText = ""
+                        showToastMessage() // 일기 작성 후 토스트 메시지 표시
+                    }
                 }) {
                     Text("💌 저장하기 💌")
                         .font(.title)
@@ -80,6 +84,13 @@ struct DiaryView: View {
                 }
                 .padding(.bottom, 50), alignment: .bottom
             )
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("일기 작성 불가"),
+                    message: Text("일기 내용을 입력하세요."),
+                    dismissButton: .default(Text("확인"))
+                )
+            }
         }
     }
 
@@ -103,4 +114,3 @@ struct DiaryView_Previews: PreviewProvider {
         DiaryView().environmentObject(DiaryData())
     }
 }
-

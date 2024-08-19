@@ -109,12 +109,15 @@ struct CalendarView: View {
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
+        formatter.dateFormat = "yyyy년 M월 d일"  // 원하는 날짜 형식을 직접 지정
+        formatter.locale = Locale(identifier: "ko_KR") // 한국어 로케일 설정
         return formatter
     }
     
     private func formattedMonthYear(from date: Date) -> String {
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM yyyy"
+            formatter.dateFormat = "MMMM"
+            formatter.locale = Locale(identifier: "ko_KR") // 한국어 로케일 설정
             return formatter.string(from: date)
         }
     

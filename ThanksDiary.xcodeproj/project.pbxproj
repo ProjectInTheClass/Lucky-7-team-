@@ -29,6 +29,7 @@
 		4C4925112C6242C2003A6CF6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4925102C6242C2003A6CF6 /* ProfileView.swift */; };
 		4C4925132C624314003A6CF6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4925122C624314003A6CF6 /* CalendarView.swift */; };
 		4C4925152C62486D003A6CF6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4925142C62486D003A6CF6 /* MainView.swift */; };
+		4CF93A102C7091CC008295CF /* RandomtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF93A0F2C7091CC008295CF /* RandomtitleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		4C4925102C6242C2003A6CF6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4C4925122C624314003A6CF6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4C4925142C62486D003A6CF6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4CF93A0F2C7091CC008295CF /* RandomtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomtitleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				4C38D93B2C65E44D007F56CC /* RandomView.swift */,
 				4C38D93D2C65E492007F56CC /* LoginView.swift */,
 				4C38D93F2C65E4A1007F56CC /* SignUpView.swift */,
+				4CF93A0F2C7091CC008295CF /* RandomtitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				4C4925112C6242C2003A6CF6 /* ProfileView.swift in Sources */,
 				4C38D93C2C65E44D007F56CC /* RandomView.swift in Sources */,
 				4C38D93E2C65E492007F56CC /* LoginView.swift in Sources */,
+				4CF93A102C7091CC008295CF /* RandomtitleView.swift in Sources */,
 				4C4395822C62FC1B005FDBB6 /* Diary.swift in Sources */,
 				4C4395802C62FB17005FDBB6 /* DiaryData.swift in Sources */,
 				4C49250F2C6242A7003A6CF6 /* DiaryView.swift in Sources */,

@@ -3,8 +3,6 @@
 //  ThanksDiary
 //
 //  Created by my account on 8/7/24.
-//
-//
 
 import SwiftUI
 
@@ -28,8 +26,10 @@ struct DiaryDetailView: View {
         VStack(alignment: .leading, spacing: 20) {
             if isEditing {
                 TextEditor(text: $diaryText)
-                    .border(Color.gray, width: 1)
                     .padding()
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 5)
                     .frame(height: 300)
 
                 Button(action: {
@@ -43,41 +43,49 @@ struct DiaryDetailView: View {
                     Text("저장")
                         .font(.title)
                         .padding()
+                        .frame(maxWidth: .infinity)
                         .background(Color.blue)
                         .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 5)
+                }
+                .padding(.horizontal)
+            } else {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(diary.date)
+                        .font(.largeTitle)
+                        .padding(.bottom, 10)
+
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray, lineWidth: 1)
+                        .background(Color.white.opacity(0.3))
+                        .frame(minHeight: 150)
+                        .overlay(
+                            Text(diary.text)
+                                .font(.body)
+                                .padding()
+                        )
+                        .padding(.horizontal)
+                        //.background(Color.pink.opacity(0.2))
                         .cornerRadius(10)
                 }
-                .padding()
-            } else {
-                Text(diary.date)
-                    .font(.largeTitle)
-                    .padding(.bottom, 10)
 
-                // 사각형 틀 안에 일기 내용 표시
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray, lineWidth: 1)
-                    .background(Color.white) // 배경 색상을 지정하여 틀 안쪽을 채웁니다.
-                    .frame(minHeight: 150)
-                    .overlay(
-                        Text(diary.text)
-                            .font(.body)
-                            .padding()
-                    )
-                
                 HStack {
                     Spacer()
-                    
+
                     Button(action: {
                         isEditing.toggle()
                     }) {
                         Text("수정")
                             .font(.title)
                             .padding()
+                            .frame(maxWidth: .infinity)
                             .background(Color.blue)
                             .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .cornerRadius(12)
+                            .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 5)
                     }
-                    .padding()
+                    .padding(.horizontal)
 
                     Button(action: {
                         diaryData.deleteDiary(diary: diary)
@@ -86,11 +94,14 @@ struct DiaryDetailView: View {
                         Text("삭제")
                             .font(.title)
                             .padding()
+                            .frame(maxWidth: .infinity)
                             .background(Color.red)
                             .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .cornerRadius(12)
+                            .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 5)
                     }
-                    .padding()
+                    .padding(.horizontal)
+
                     Spacer()
                 }
             }
@@ -98,7 +109,9 @@ struct DiaryDetailView: View {
             Spacer()
         }
         .padding()
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("일기 보기")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

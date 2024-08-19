@@ -3,50 +3,40 @@
 //  ThanksDiary
 //
 //  Created by my account on 8/9/24.
-//
 
 
 import SwiftUI
 
 struct RandomView: View {
-    // 미리 정의된 주제 목록
-    let topics = ["바다", "하늘", "산", "나무", "친구", "가족", "음식", "여행", "음악", "책"]
-    
-    // 랜덤 주제를 저장할 상태 변수
-    @State private var selectedTopic: String = "랜덤주제를 눌러보세요!"
-
     var body: some View {
-        VStack(spacing: 20) {
-            Text("랜덤 주제")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+        NavigationView {
+            VStack {
+                GeometryReader { geometry in
+                    VStack {
+                        // 💌 이모티콘에 NavigationLink 추가
+                        NavigationLink(destination: RandomtitleView()) {
+                            Text("💌")
+                                .font(.system(size: geometry.size.width * 0.5))
+                                .frame(height: geometry.size.height * 0.4)
+                        }
 
-            Text(selectedTopic)
-                .font(.title)
-                .padding()
-                .background(Color.blue.opacity(0.2))
-                .cornerRadius(10)
-                .onTapGesture {
-                    generateRandomTopic()
+                        Text("주제가 도착했어요!")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
+                    }
+                    // GeometryReader의 VStack을 가운데 정렬
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
-
-            Spacer()
-        }
-        .padding()
-        .navigationTitle("랜덤 주제")
-    }
-
-    // 랜덤 주제를 선택하는 함수
-    private func generateRandomTopic() {
-        if let randomTopic = topics.randomElement() {
-            selectedTopic = "주제: \(randomTopic)"
+                .navigationTitle("🍀오늘의 주제🍀")
+                .navigationBarTitleDisplayMode(.inline)
+            }
         }
     }
 }
 
-struct RandomView_Previews: PreviewProvider {
-    static var previews: some View {
-        RandomView()
-    }
+#Preview {
+    RandomView()
 }
+
