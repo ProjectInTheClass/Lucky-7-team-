@@ -8,7 +8,7 @@
 Jin, Jiwoo, Sunny
 
 ## 🧑‍🏫멘토 소개
-Ito, Rumi
+Ito, Lumi
 
 
 
